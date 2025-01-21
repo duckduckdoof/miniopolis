@@ -169,3 +169,14 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Custom Omissions
+maps/*.tiled-project
+maps/*.tiled-session
+maps/*.tsx
+maps/*.tmx
+
+res/*.aseprite
+
+template.py
+test-demo.py
