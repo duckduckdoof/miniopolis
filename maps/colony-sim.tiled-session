@@ -1,0 +1,29 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "bulidings.tsx": {
+            "dynamicWrapping": true
+        },
+        "world-tiles.tsx": {
+            "dynamicWrapping": false
+        }
+    },
+    "last.exportedFilePath": "/home/goose/dev/mycropolis_game/my-sim-game/maps",
+    "last.imagePath": "/home/goose/dev/mycropolis_game/my-sim-game/res",
+    "map.lastUsedExportFilter": "All Files (*)",
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": "1",
+    "openFiles": [
+    ],
+    "project": "colony-sim.tiled-project",
+    "recentFiles": [
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.type": 1
+}
