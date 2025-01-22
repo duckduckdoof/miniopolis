@@ -52,7 +52,7 @@ class GameBoard(arcade.Window):
             start_x=TEXT_X, start_y=TEXT_Y
         )
         self.commands_text = arcade.Text(
-            "COMMANDS:   [X] - Delete",
+            "COMMANDS:   [LMB] - Check Tile [LMB+X] - Delete [LMB+KEY] - Put Structure",
             start_x=TEXT_X, start_y=TEXT_Y - TEXT_Y_WIDTH
         )
         self.resources_text = arcade.Text(
@@ -100,7 +100,7 @@ class GameBoard(arcade.Window):
         self.tile_text.text = f"SELECTED:   {self.selected_struct_tile} on {self.selected_env_tile}"
         self.tile_text.draw()
 
-        self.resources_text.text = f"RESOURCES:  People: 0, Iron: 0, Wood: 0, Food: 0",
+        self.resources_text.text = f"RESOURCES:  People: 0, Iron: 0, Wood: 0, Food: 0"
         self.resources_text.draw()
 
 # MAIN --------------------------------------------------------------
