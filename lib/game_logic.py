@@ -101,3 +101,6 @@ class GameLogic:
         if len(s_tiles) == 1:
             struct_sprites = self.scene[LAYER_STRUCTURES]
             struct_sprites.remove(s_tiles[0])
+            return ""
+        else:
+            return "No structure on that space."

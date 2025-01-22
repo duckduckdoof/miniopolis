@@ -113,6 +113,7 @@ class GameBoard(arcade.Window):
                 self.build_mode = ""
 
     def on_mouse_release(self, x, y, button, modifiers):
+        res = ""
         if self.pressed_key == arcade.key.X:
             res = self.game_logic.delete_structure(x, y)
         elif self.pressed_key == arcade.key.L:
@@ -175,7 +176,7 @@ class GameBoard(arcade.Window):
         self.mode_text.draw()
 
         self.error_text.text = f"{self.error_msg}"
-        self.mode_text.draw()
+        self.error_text.draw()
 
 # MAIN --------------------------------------------------------------
 
