@@ -1,56 +1,17 @@
-
 """
-tile-demo.py
+miniopolis.py
 
 author: Caleb Scott
 
-Attempting to make a tile-based layout for a colony-sim game.
+First attempt to make a tile-based colony-sim game.
 """
 
 # IMPORTS -----------------------------------------------------------
 
 import arcade
-
-# CONSTANTS ---------------------------------------------------------
-
-# Sizing
-TILE_SCALE = 1.0
-
-# Screen constants
-SCREEN_WIDTH = 960
-SCREEN_HEIGHT = 960
-SCREEN_TITLE = "ColonySim Tiles Demo"
-
-# World size
-WORLD_WIDTH = 960
-WORLD_HEIGHT = 640
-
-# Text placement
-TEXT_X = 10
-TEXT_Y = SCREEN_HEIGHT - 30
-TEXT_Y_WIDTH = 30
-
-# Resources dir
-RES = "res/"
-
-# Maps dir + map presets
-MAPS = "maps/"
-TEST_MAP = MAPS + "default-map.json"
-
-# Layers for Map
-LAYER_STRUCTURES = "Structures"
-LAYER_ENVIRONMENT = "Environment"
+from lib.game_config import *
 
 # CLASSES -----------------------------------------------------------
-
-class HousingTile(arcade.Sprite):
-
-    def __init__(self):
-        # Basic type attributes
-        self.type = "Housing"
-
-        self.image_file_name = RES + "housing.png"
-        super().__init__(self.image_file_name, TILE_SCALE)
 
 class GameBoard(arcade.Window):
 
@@ -95,7 +56,7 @@ class GameBoard(arcade.Window):
             start_x=TEXT_X, start_y=TEXT_Y - TEXT_Y_WIDTH
         )
         self.resources_text = arcade.Text(
-            "RESOURCES:  People: 0, Iron: 0, Wood: 0, Crops: 0",
+            "RESOURCES:  People: 0, Iron: 0, Wood: 0, Food: 0",
             start_x=TEXT_X, start_y=TEXT_Y - 2*TEXT_Y_WIDTH
         )
         self.tile_text = arcade.Text(
@@ -135,10 +96,12 @@ class GameBoard(arcade.Window):
         # Draw updated text
         self.structs_text.draw()
         self.commands_text.draw()
-        self.resources_text.draw()
 
         self.tile_text.text = f"SELECTED:   {self.selected_struct_tile} on {self.selected_env_tile}"
         self.tile_text.draw()
+
+        self.resources_text.text = f"RESOURCES:  People: 0, Iron: 0, Wood: 0, Food: 0",
+        self.resources_text.draw()
 
 # MAIN --------------------------------------------------------------
 
