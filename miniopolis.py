@@ -9,6 +9,7 @@ First attempt to make a tile-based colony-sim game.
 # IMPORTS -----------------------------------------------------------
 
 import arcade
+import arcade.key
 from lib.game_config import *
 
 # CLASSES -----------------------------------------------------------
@@ -65,9 +66,10 @@ class GameBoard(arcade.Window):
         )
 
     def on_mouse_release(self, x, y, button, modifiers):
-        """
-        On mouse click, get the tiles over the mouse.
-        """
+
+        # Check if button was held -- this means we place structure tiles or delete them
+        if button == arcade.key.X:
+            print("Delete!")
         
         # Checking structure tile type
         s_tiles = arcade.get_sprites_at_point((x,y), self.scene[LAYER_STRUCTURES])
