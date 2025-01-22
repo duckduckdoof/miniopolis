@@ -42,3 +42,25 @@ TEST_MAP = MAPS + "default-map.json"
 # Layers for Map
 LAYER_STRUCTURES = "Structures"
 LAYER_ENVIRONMENT = "Environment"
+
+# Tile Types
+LOGGER = "LoggerTile"
+CROPS = "CropsTile"
+HYDROPOWER = "HydroPowerTile"
+HOUSING = "HousingTile"
+MINER = "MinerTile"
+FACTORY = "FactoryTile"
+JUNCTION = "JunctionTile"
+
+GROUND = "GroundTile"
+WATER = "WaterTile"
+IRON = "IronTile"
+TREES = "TreesTile"
+
+# Game Starting Resources
+STARTING_RESOURCES = {
+    "iron": 50,
+    "wood": 100,
+    "people": 10,
+    "food": 200
+}

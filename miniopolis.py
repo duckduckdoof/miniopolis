@@ -9,8 +9,9 @@ First attempt to make a tile-based colony-sim game.
 # IMPORTS -----------------------------------------------------------
 
 import arcade
-import arcade.key
+
 from lib.game_config import *
+from lib.game_logic import GameLogic
 
 # CLASSES -----------------------------------------------------------
 
@@ -45,7 +46,11 @@ class GameBoard(arcade.Window):
 
         # Tiles selection
         self.selected_struct_tile = "[Nothing]"
-        self.selected_env_tile = "GroundTile"
+        self.selected_env_tile = GROUND
+
+        # Structure build state
+        self.pressed_key = None
+        self.build_mode = ""
 
         # Render text for the game
         self.structs_text = arcade.Text(
@@ -64,26 +69,71 @@ class GameBoard(arcade.Window):
             f"SELECTED:   {self.selected_struct_tile}",
             start_x=TEXT_X, start_y=TEXT_Y - 3*TEXT_Y_WIDTH
         )
+        self.mode_text = arcade.Text(
+            f"MODE:       {self.build_mode}",
+            start_x=TEXT_X, start_y=TEXT_Y - 4*TEXT_Y_WIDTH
+        )
+
+        # Initialize the Game Logic class
+        self.game_logic = GameLogic(self.scene, STARTING_RESOURCES)
+
+    def on_key_release(self, symbol, modifiers):
+        if symbol == arcade.key.ESCAPE:
+            self.pressed_key = None
+            self.build_mode = ""
+        else:
+            self.pressed_key = symbol
+            if self.pressed_key == arcade.key.X:
+                self.build_mode = "Delete Structure"
+            elif self.pressed_key == arcade.key.L:
+                self.build_mode = "Place Logger (must be on trees tile)"
+            elif self.pressed_key == arcade.key.C:
+                self.build_mode = "Place Crops"
+            elif self.pressed_key == arcade.key.W:
+                self.build_mode = "Place Hydro Power (must be adjacent to water)"
+            elif self.pressed_key == arcade.key.H:
+                self.build_mode = "Place Housing"
+            elif self.pressed_key == arcade.key.M:
+                self.build_mode = "Place Miner (must be on iron tile)"
+            elif self.pressed_key == arcade.key.F:
+                self.build_mode = "Place Factory"
+            elif self.pressed_key == arcade.key.J:
+                self.build_mode = "Place Junction"
+            else:
+                self.pressed_key = None
+                self.build_mode = ""
 
     def on_mouse_release(self, x, y, button, modifiers):
-
-        # Check if button was held -- this means we place structure tiles or delete them
-        if button == arcade.key.X:
-            print("Delete!")
-        
-        # Checking structure tile type
-        s_tiles = arcade.get_sprites_at_point((x,y), self.scene[LAYER_STRUCTURES])
-        if len(s_tiles) == 1:
-            self.selected_struct_tile = s_tiles[0].properties['type']
+        if self.pressed_key == arcade.key.X:
+            self.game_logic.delete_structure(x, y)
+        elif self.pressed_key == arcade.key.L:
+            self.game_logic.place_structure(LOGGER, x, y)
+        elif self.pressed_key == arcade.key.C:
+            self.game_logic.place_structure(CROPS, x, y)
+        elif self.pressed_key == arcade.key.W:
+            self.game_logic.place_structure(HYDROPOWER, x, y)
+        elif self.pressed_key == arcade.key.H:
+            self.game_logic.place_structure(HOUSING, x, y)
+        elif self.pressed_key == arcade.key.M:
+            self.game_logic.place_structure(MINER, x, y)
+        elif self.pressed_key == arcade.key.F:
+            self.game_logic.place_structure(FACTORY, x, y)
+        elif self.pressed_key == arcade.key.J:
+            self.game_logic.place_structure(JUNCTION, x, y)
         else:
-            self.selected_struct_tile = "[Nothing]"
+            # Checking structure tile type
+            s_tiles = arcade.get_sprites_at_point((x,y), self.scene[LAYER_STRUCTURES])
+            if len(s_tiles) == 1:
+                self.selected_struct_tile = s_tiles[0].properties['type']
+            else:
+                self.selected_struct_tile = "[Nothing]"
 
-        # Checking environment tile type
-        e_tiles = arcade.get_sprites_at_point((x,y), self.scene[LAYER_ENVIRONMENT])
-        if len(e_tiles) == 1:
-            self.selected_env_tile = e_tiles[0].properties['type']
-        else:
-            self.selected_env_tile = "GroundTile"
+            # Checking environment tile type
+            e_tiles = arcade.get_sprites_at_point((x,y), self.scene[LAYER_ENVIRONMENT])
+            if len(e_tiles) == 1:
+                self.selected_env_tile = e_tiles[0].properties['type']
+            else:
+                self.selected_env_tile = GROUND
 
     def on_draw(self):
         """
@@ -104,6 +154,9 @@ class GameBoard(arcade.Window):
 
         self.resources_text.text = f"RESOURCES:  People: 0, Iron: 0, Wood: 0, Food: 0"
         self.resources_text.draw()
+
+        self.mode_text.text = f"MODE:       {self.build_mode}"
+        self.mode_text.draw()
 
 # MAIN --------------------------------------------------------------
 
