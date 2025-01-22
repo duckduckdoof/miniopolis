@@ -52,6 +52,9 @@ class GameBoard(arcade.Window):
         self.pressed_key = None
         self.build_mode = ""
 
+        # Errors
+        self.error_msg = ""
+
         # Render text for the game
         self.structs_text = arcade.Text(
             "STRUCTURES: [L]ogger [C]rops [W]ater Power [H]ousing [M]iner [F]actory [J]unction",
@@ -71,7 +74,13 @@ class GameBoard(arcade.Window):
         )
         self.mode_text = arcade.Text(
             f"MODE:       {self.build_mode}",
-            start_x=TEXT_X, start_y=TEXT_Y - 4*TEXT_Y_WIDTH
+            start_x=TEXT_X, start_y=TEXT_Y - 4*TEXT_Y_WIDTH,
+            color=arcade.color.YELLOW
+        )
+        self.error_text = arcade.Text(
+            f"{self.error_msg}",
+            start_x=TEXT_X, start_y=TEXT_Y - 5*TEXT_Y_WIDTH,
+            color=arcade.color.RED_ORANGE
         )
 
         # Initialize the Game Logic class
@@ -105,21 +114,21 @@ class GameBoard(arcade.Window):
 
     def on_mouse_release(self, x, y, button, modifiers):
         if self.pressed_key == arcade.key.X:
-            self.game_logic.delete_structure(x, y)
+            res = self.game_logic.delete_structure(x, y)
         elif self.pressed_key == arcade.key.L:
-            self.game_logic.place_structure(LOGGER, x, y)
+            res = self.game_logic.place_structure(LOGGER, x, y)
         elif self.pressed_key == arcade.key.C:
-            self.game_logic.place_structure(CROPS, x, y)
+            res = self.game_logic.place_structure(CROPS, x, y)
         elif self.pressed_key == arcade.key.W:
-            self.game_logic.place_structure(HYDROPOWER, x, y)
+            res = self.game_logic.place_structure(HYDROPOWER, x, y)
         elif self.pressed_key == arcade.key.H:
-            self.game_logic.place_structure(HOUSING, x, y)
+            res = self.game_logic.place_structure(HOUSING, x, y)
         elif self.pressed_key == arcade.key.M:
-            self.game_logic.place_structure(MINER, x, y)
+            res = self.game_logic.place_structure(MINER, x, y)
         elif self.pressed_key == arcade.key.F:
-            self.game_logic.place_structure(FACTORY, x, y)
+            res = self.game_logic.place_structure(FACTORY, x, y)
         elif self.pressed_key == arcade.key.J:
-            self.game_logic.place_structure(JUNCTION, x, y)
+            res = self.game_logic.place_structure(JUNCTION, x, y)
         else:
             # Checking structure tile type
             s_tiles = arcade.get_sprites_at_point((x,y), self.scene[LAYER_STRUCTURES])
@@ -134,6 +143,13 @@ class GameBoard(arcade.Window):
                 self.selected_env_tile = e_tiles[0].properties['type']
             else:
                 self.selected_env_tile = GROUND
+
+        # Display error if placement was invalid
+        self.error_msg = res
+
+        # Reset key mode
+        self.pressed_key = None
+        self.build_mode = ""
 
     def on_draw(self):
         """
@@ -156,6 +172,9 @@ class GameBoard(arcade.Window):
         self.resources_text.draw()
 
         self.mode_text.text = f"MODE:       {self.build_mode}"
+        self.mode_text.draw()
+
+        self.error_text.text = f"{self.error_msg}"
         self.mode_text.draw()
 
 # MAIN --------------------------------------------------------------

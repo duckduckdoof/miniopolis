@@ -34,6 +34,7 @@ CROPS_RES = RES + "crops.png"
 LOGGER_RES = RES + "logger.png"
 HYDRO_RES = RES + "hydropower.png"
 FACTORY_RES = RES + "factory.png"
+JUNCTION_RES = RES + "connector.png"
 
 # Maps dir + map presets
 MAPS = "maps/"

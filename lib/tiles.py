@@ -9,7 +9,7 @@ Contains all classes of tiles used in miniopolis
 # IMPORTS -----------------------------------------------------------
 
 import arcade
-from game_config import *
+from lib.game_config import *
 
 # CLASSES -----------------------------------------------------------
 
@@ -20,7 +20,7 @@ class HousingTile(arcade.Sprite):
         super().__init__(self.image_file_name, TILE_SCALE)
 
         # Set custom properties
-        self.properties["type"] = "HousingTile"
+        self.properties["type"] = HOUSING
         self.center_x = x
         self.center_y = y
 
@@ -31,7 +31,7 @@ class LoggerTile(arcade.Sprite):
         super().__init__(self.image_file_name, TILE_SCALE)
 
         # Set custom properties
-        self.properties["type"] = "LoggerTile"
+        self.properties["type"] = LOGGER
         self.center_x = x
         self.center_y = y
 
@@ -42,7 +42,7 @@ class CropsTile(arcade.Sprite):
         super().__init__(self.image_file_name, TILE_SCALE)
 
         # Set custom properties
-        self.properties["type"] = "CropsTile"
+        self.properties["type"] = CROPS
         self.center_x = x
         self.center_y = y
 
@@ -53,7 +53,7 @@ class HyroPowerTile(arcade.Sprite):
         super().__init__(self.image_file_name, TILE_SCALE)
 
         # Set custom properties
-        self.properties["type"] = "HydroPowerTile"
+        self.properties["type"] = HYDROPOWER
         self.center_x = x
         self.center_y = y
 
@@ -64,7 +64,7 @@ class MinerTile(arcade.Sprite):
         super().__init__(self.image_file_name, TILE_SCALE)
 
         # Set custom properties
-        self.properties["type"] = "MinerTile"
+        self.properties["type"] = MINER
         self.center_x = x
         self.center_y = y
 
@@ -75,6 +75,17 @@ class FactoryTile(arcade.Sprite):
         super().__init__(self.image_file_name, TILE_SCALE)
 
         # Set custom properties
-        self.properties["type"] = "FactoryTile"
+        self.properties["type"] = FACTORY
+        self.center_x = x
+        self.center_y = y
+
+class JunctionTile(arcade.Sprite):
+
+    def __init__(self, x, y):
+        self.image_file_name = JUNCTION_RES
+        super().__init__(self.image_file_name, TILE_SCALE)
+
+        # Set custom properties
+        self.properties["type"] = JUNCTION
         self.center_x = x
         self.center_y = y
