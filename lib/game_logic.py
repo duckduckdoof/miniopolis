@@ -37,7 +37,8 @@ class GameLogic:
         #   is legal.
         e_tiles = arcade.get_sprites_at_point((x,y), self.scene[LAYER_ENVIRONMENT])
         if len(e_tiles) == 1:
-            env_tile_type = e_tiles[0].properties['type']
+            print(e_tiles[0].properties)
+            env_tile_type = e_tiles[0].properties['class']
             c_x, c_y = e_tiles[0].center_x, e_tiles[0].center_y
 
             # Determine what sprite object to place

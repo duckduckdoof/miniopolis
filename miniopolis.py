@@ -134,14 +134,14 @@ class GameBoard(arcade.Window):
             # Checking structure tile type
             s_tiles = arcade.get_sprites_at_point((x,y), self.scene[LAYER_STRUCTURES])
             if len(s_tiles) == 1:
-                self.selected_struct_tile = s_tiles[0].properties['type']
+                self.selected_struct_tile = s_tiles[0].properties['class']
             else:
                 self.selected_struct_tile = "[Nothing]"
 
             # Checking environment tile type
             e_tiles = arcade.get_sprites_at_point((x,y), self.scene[LAYER_ENVIRONMENT])
             if len(e_tiles) == 1:
-                self.selected_env_tile = e_tiles[0].properties['type']
+                self.selected_env_tile = e_tiles[0].properties['class']
             else:
                 self.selected_env_tile = GROUND
 
