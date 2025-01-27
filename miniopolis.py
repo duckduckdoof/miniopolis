@@ -58,28 +58,28 @@ class GameBoard(arcade.Window):
         # Render text for the game
         self.structs_text = arcade.Text(
             "STRUCTURES: [L]ogger [C]rops [W]ater Power [H]ousing [M]iner [F]actory [J]unction",
-            start_x=TEXT_X, start_y=TEXT_Y
+            x=TEXT_X, y=TEXT_Y
         )
         self.commands_text = arcade.Text(
             "COMMANDS:   [LMB] - Check Tile [LMB+X] - Delete [LMB+KEY] - Put Structure",
-            start_x=TEXT_X, start_y=TEXT_Y - TEXT_Y_WIDTH
+            x=TEXT_X, y=TEXT_Y - TEXT_Y_WIDTH
         )
         self.resources_text = arcade.Text(
             "RESOURCES:  People: 0, Iron: 0, Wood: 0, Food: 0",
-            start_x=TEXT_X, start_y=TEXT_Y - 2*TEXT_Y_WIDTH
+            x=TEXT_X, y=TEXT_Y - 2*TEXT_Y_WIDTH
         )
         self.tile_text = arcade.Text(
             f"SELECTED:   {self.selected_struct_tile}",
-            start_x=TEXT_X, start_y=TEXT_Y - 3*TEXT_Y_WIDTH
+            x=TEXT_X, y=TEXT_Y - 3*TEXT_Y_WIDTH
         )
         self.mode_text = arcade.Text(
             f"MODE:       {self.build_mode}",
-            start_x=TEXT_X, start_y=TEXT_Y - 4*TEXT_Y_WIDTH,
+            x=TEXT_X, y=TEXT_Y - 4*TEXT_Y_WIDTH,
             color=arcade.color.YELLOW
         )
         self.error_text = arcade.Text(
             f"{self.error_msg}",
-            start_x=TEXT_X, start_y=TEXT_Y - 5*TEXT_Y_WIDTH,
+            x=TEXT_X, y=TEXT_Y - 5*TEXT_Y_WIDTH,
             color=arcade.color.RED_ORANGE
         )
 
