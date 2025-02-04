@@ -4,7 +4,7 @@ scene_config.py
 author: Caleb Scott
 
 Configuration file for modifying the visual scene of the game.
-This is not the same as game_config.py, which is used to adjust
+This is not the same as engine/game_config.py, which is used to adjust
 game objects (apart from their visuals, like sprites)
 """
 
@@ -54,14 +54,16 @@ MINER = "MinerTile"
 FACTORY = "FactoryTile"
 JUNCTION = "JunctionTile"
 
+FOUNDATION = "FoundationTile"
+
 GROUND = "GroundTile"
 WATER = "WaterTile"
-IRON = "IronTile"
+METAL = "MetalTile"
 TREES = "TreesTile"
 
 # Game Starting Resources
 STARTING_RESOURCES = {
-    "iron": 50,
+    "metal": 50,
     "wood": 100,
     "people": 10,
     "food": 200
