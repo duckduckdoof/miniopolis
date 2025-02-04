@@ -1,6 +1,6 @@
 # miniopolis
 
-A quicker, easier version of Mycropolis
+A quicker, easier version of Micropolis (Sim-City) which adds some Factorio-like resource gathering.
 
 Author: Caleb Scott
 
