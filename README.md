@@ -1,6 +1,7 @@
 # miniopolis
 
 A quicker, easier version of Micropolis (Sim-City) which adds some Factorio-like resource gathering.
+Our goal is to make a (cool) game which we can then introduce as an AI-playground for different kinds of agents.
 
 Author: Caleb Scott
 
