@@ -6,6 +6,20 @@ Author: Caleb Scott
 
 ---
 
+## Installation
+
+To install this project (I'd recommend having a python virtual environment first):
+
+```python
+pip install -r requirements.txt
+```
+
+Then, to run:
+
+```python
+python miniopolis.py
+```
+
 ## Libraries and Software
 
 This project uses:
