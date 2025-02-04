@@ -1,4 +1,4 @@
-# my-sim-game
+# miniopolis
 
 A quicker, easier version of Mycropolis
 
