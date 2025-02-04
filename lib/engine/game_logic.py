@@ -3,14 +3,15 @@ game_logic.py
 
 author: Caleb Scott
 
-Internal logic for the game world.
+Internal logic for the game world. This doesn't work with setting
+visual elements; this is handles in the scene/ python files
 """
 
 # IMPORTS -----------------------------------------------------------
 
 import arcade
-from lib.game_config import *
-from lib.tiles import *
+from lib.scene.scene_config import *
+from lib.scene.scene_tiles import *
 
 # CLASSES -----------------------------------------------------------
 

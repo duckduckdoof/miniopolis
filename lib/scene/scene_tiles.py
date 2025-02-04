@@ -1,5 +1,5 @@
 """
-tiles.py
+scene_tiles.py
 
 author: Caleb Scott
 
@@ -9,7 +9,7 @@ Contains all classes of tiles used in miniopolis
 # IMPORTS -----------------------------------------------------------
 
 import arcade
-from lib.game_config import *
+from lib.scene.scene_config import *
 
 # CLASSES -----------------------------------------------------------
 

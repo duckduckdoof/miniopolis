@@ -10,8 +10,8 @@ First attempt to make a tile-based colony-sim game.
 
 import arcade
 
-from lib.game_config import *
-from lib.game_logic import GameLogic
+from lib.scene.scene_config import *
+from lib.engine.game_logic import GameLogic
 
 # CLASSES -----------------------------------------------------------
 

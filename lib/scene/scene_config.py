@@ -1,10 +1,11 @@
-
 """
-game_config.py
+scene_config.py
 
 author: Caleb Scott
 
-Contains all constants needed to modify the game
+Configuration file for modifying the visual scene of the game.
+This is not the same as game_config.py, which is used to adjust
+game objects (apart from their visuals, like sprites)
 """
 
 # CONSTANTS ---------------------------------------------------------
