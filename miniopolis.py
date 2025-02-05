@@ -10,7 +10,10 @@ First attempt to make a tile-based colony-sim game.
 
 import arcade
 
+from global_config import *
 from lib.scene.scene_config import *
+from lib.scene.scene_logic import info_from_layered_tilemap
+from lib.engine.game_logic import GameLogic, init_gb_from_scene_info
 
 # CLASSES -----------------------------------------------------------
 
@@ -33,9 +36,6 @@ class GameBoard(arcade.Window):
             layer_options=LAYER_OPTIONS
         )
         self.scene = arcade.Scene.from_tilemap(self.tile_map)
-
-        for layer in self.scene.keys():
-            print(layer)
 
         # Tiles selection
         self.selected_struct_tile = "[Nothing]"
@@ -76,8 +76,12 @@ class GameBoard(arcade.Window):
             color=arcade.color.RED_ORANGE
         )
 
-        # Initialize the Game Logic class
-        # self.game_logic = GameLogic(self.scene, None)
+        # Initialize the Game Logic manager (this also inits the board)
+        # First, get the layers from the scene, and convert them 
+        #   into proper game objects
+        scene_info = info_from_layered_tilemap(self.scene)
+        game_layers = init_gb_from_scene_info(scene_info)
+        self.game_logic = GameLogic(game_layers)
 
     def on_key_release(self, symbol, modifiers):
         if symbol == arcade.key.ESCAPE:
@@ -114,11 +118,11 @@ class GameBoard(arcade.Window):
         elif self.pressed_key == arcade.key.C:
             res = self.game_logic.place_structure(CROPS, x, y)
         elif self.pressed_key == arcade.key.W:
-            res = self.game_logic.place_structure(HYDROPOWER, x, y)
+            res = self.game_logic.place_structure(HYDRO_POWER, x, y)
         elif self.pressed_key == arcade.key.H:
             res = self.game_logic.place_structure(HOUSING, x, y)
         elif self.pressed_key == arcade.key.M:
-            res = self.game_logic.place_structure(MINER, x, y)
+            res = self.game_logic.place_structure(MINE, x, y)
         elif self.pressed_key == arcade.key.F:
             res = self.game_logic.place_structure(FACTORY, x, y)
         elif self.pressed_key == arcade.key.J:

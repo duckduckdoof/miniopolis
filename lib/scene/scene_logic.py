@@ -12,7 +12,7 @@ interpreting player inputs on the screen, etc.
 
 from arcade import Scene
 
-from scene_config import *
+from lib.scene.scene_config import *
 from global_config import *
 
 # FUNCTIONS ---------------------------------------------------------
@@ -31,6 +31,6 @@ def info_from_layered_tilemap(scene: Scene):
         scene_info[layer] = [[""] * BOARD_HEIGHT for _ in range(BOARD_WIDTH)]
 
         # Populate the layer info as 2D arrays
-        for i, S in enumerate(scene[layer]):
-            scene_info[layer][i//BOARD_WIDTH][i%BOARD_HEIGHT] = scene[layer].properties[TILE_NAME]
+        for i, sprite in enumerate(scene[layer]):
+            scene_info[layer][i//BOARD_WIDTH][i%BOARD_HEIGHT] = sprite.properties[TILE_NAME]
     return scene_info

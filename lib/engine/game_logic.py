@@ -9,8 +9,10 @@ visual elements; this is handles in the scene/ python files
 
 # IMPORTS -----------------------------------------------------------
 
+from global_config import *
 from lib.engine.game_config import *
 from lib.engine.game_board import LayeredFlatWorld
+from lib.engine.game_objects import str_to_game_object
 
 # FUNCTIONS ---------------------------------------------------------
 
@@ -19,7 +21,13 @@ def init_gb_from_scene_info(scene_info: dict):
     Takes a dictionary of 2D arrays (organized by layer name), and
     converts them into their proper game board of game objects.
     """
-
+    board_layers = {}
+    for layer in scene_info.keys():
+        board_layers[layer] = [[None] * BOARD_HEIGHT for _ in range(BOARD_WIDTH)]
+        for i in range(BOARD_WIDTH):
+            for j in range(BOARD_HEIGHT):
+                board_layers[layer][i][j] = str_to_game_object(scene_info[layer][i][j])
+    return board_layers
 
 # CLASSES -----------------------------------------------------------
 
