@@ -11,7 +11,6 @@ First attempt to make a tile-based colony-sim game.
 import arcade
 
 from lib.scene.scene_config import *
-from lib.engine.game_logic import GameLogic
 
 # CLASSES -----------------------------------------------------------
 
@@ -28,21 +27,15 @@ class GameBoard(arcade.Window):
         Used for starting up the game board
         """
         # Obtain world tilemap
-        # Layer options come from https://api.arcade.academy/en/platformer_tutorial_revamp/tutorials/platform_tutorial/step_12.html
-        layer_options = {
-            LAYER_ENVIRONMENT: {
-                "use_spatial_hash": True
-            },
-            LAYER_STRUCTURES: {
-                "use_spatial_hash": True
-            }
-        }
         self.tile_map = arcade.load_tilemap(
             TEST_MAP,
             scaling=TILE_SCALE, 
-            layer_options=layer_options
+            layer_options=LAYER_OPTIONS
         )
         self.scene = arcade.Scene.from_tilemap(self.tile_map)
+
+        for layer in self.scene.keys():
+            print(layer)
 
         # Tiles selection
         self.selected_struct_tile = "[Nothing]"
@@ -84,7 +77,7 @@ class GameBoard(arcade.Window):
         )
 
         # Initialize the Game Logic class
-        self.game_logic = GameLogic(self.scene, STARTING_RESOURCES)
+        # self.game_logic = GameLogic(self.scene, None)
 
     def on_key_release(self, symbol, modifiers):
         if symbol == arcade.key.ESCAPE:

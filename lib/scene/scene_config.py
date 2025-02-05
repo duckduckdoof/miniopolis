@@ -5,7 +5,7 @@ author: Caleb Scott
 
 Configuration file for modifying the visual scene of the game.
 This is not the same as engine/game_config.py, which is used to adjust
-game objects (apart from their visuals, like sprites)
+game objects (apart from their visuals)
 """
 
 # CONSTANTS ---------------------------------------------------------
@@ -18,7 +18,7 @@ SCREEN_WIDTH = 960
 SCREEN_HEIGHT = 960
 SCREEN_TITLE = "Miniopolis Demo"
 
-# World size
+# World size in pixels
 WORLD_WIDTH = 960
 WORLD_HEIGHT = 640
 
@@ -41,30 +41,30 @@ JUNCTION_RES = RES + "connector.png"
 MAPS = "maps/"
 TEST_MAP = MAPS + "default-map.json"
 
+# Tile property which gets its name as string
+TILE_NAME = 'class'
+
 # Layers for Map
 LAYER_STRUCTURES = "Structures"
+LAYER_FOUNDATIONS = "Foundations"
 LAYER_ENVIRONMENT = "Environment"
 
-# Tile Types
-LOGGER = "LoggerTile"
-CROPS = "CropsTile"
-HYDROPOWER = "HydroPowerTile"
-HOUSING = "HousingTile"
-MINER = "MinerTile"
-FACTORY = "FactoryTile"
-JUNCTION = "JunctionTile"
+# Layer ordering (bottom to top)
+LAYERS = [
+    LAYER_ENVIRONMENT, 
+    LAYER_FOUNDATIONS, 
+    LAYER_STRUCTURES
+]
 
-FOUNDATION = "FoundationTile"
-
-GROUND = "GroundTile"
-WATER = "WaterTile"
-METAL = "MetalTile"
-TREES = "TreesTile"
-
-# Game Starting Resources
-STARTING_RESOURCES = {
-    "metal": 50,
-    "wood": 100,
-    "people": 10,
-    "food": 200
+# Layer Options (for spatial hashing)
+LAYER_OPTIONS = {
+    LAYER_ENVIRONMENT: {
+        "use_spatial_hash": True
+    },
+    LAYER_FOUNDATIONS: {
+        "use_spatial_hash": True
+    },
+    LAYER_STRUCTURES: {
+        "use_spatial_hash": True
+    }
 }

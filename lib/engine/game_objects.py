@@ -12,14 +12,50 @@ between the game scene/rendering and game logic/objects.
 
 import math
 
-# CONSTANTS ---------------------------------------------------------
+from lib.engine.game_config import *
+from global_config import *
 
-MANPOWER = "Manpower"
-WATER = "Water"
-METALS = "Metals"
-ROCKS = "Rocks"
-WOOD = "Wood"
-POWER = "Power"
+# FUNCTIONS ---------------------------------------------------------
+
+def str_to_game_object(game_obj_str: str):
+    """
+    Factory method: given a game object string 
+    (usually from tileset arrays), return the corresponding object.
+    """
+    if game_obj_str == JUNCTION:
+        return Junction()
+    elif game_obj_str == HOUSING:
+        return Housing()
+    elif game_obj_str == ROCKSILO:
+        return Silo(RESOURCE_ROCKS)
+    elif game_obj_str == METALSILO:
+        return Silo(RESOURCE_METALS)
+    elif game_obj_str == WOODSILO:
+        return Silo(RESOURCE_WOOD)
+    elif game_obj_str == WATER_TOWER:
+        return WaterTower()
+    elif game_obj_str == CAPACITOR:
+        return Capacitor()
+    elif game_obj_str == HYDRO_POWER:
+        return HydroPower()
+    elif game_obj_str == CROPS:
+        return Crops()
+    elif game_obj_str == FACTORY:
+        return Factory()
+    elif game_obj_str == FOUNDATION:
+        return Foundation()
+    elif game_obj_str == WATER:
+        return Water()
+    elif game_obj_str == TREES:
+        return Trees()
+    elif game_obj_str == GROUND:
+        return Ground()
+    elif game_obj_str == METAL:
+        return Metals()
+    elif game_obj_str == ROCKS:
+        return Rocks()
+    else:
+        return None
 
 # CLASSES -----------------------------------------------------------
 
@@ -55,17 +91,17 @@ class Junction(GameObject):
 class Housing(Storage):
 
     def __init__(self):
-        super().__init__("Housing", MANPOWER, 20.0)
+        super().__init__("Housing", RESOURCE_MANPOWER, 20.0)
 
 class WaterTower(Storage):
 
     def __init__(self):
-        super().__init__("WaterTower", WATER, 600.0)
+        super().__init__("WaterTower", RESOURCE_WATER, 600.0)
 
 class Capacitor(Storage):
 
     def __init__(self):
-        super().__init__("Capacitor", POWER, 100.0)
+        super().__init__("Capacitor", RESOURCE_POWER, 100.0)
 
 class Silo(Storage):
 
@@ -94,6 +130,16 @@ class Quarry(Producer):
     def __init__(self):
         super().__init__("Quarry", 0.0)
 
+class Crops(Producer):
+
+    def __init__(self):
+        super().__init__("Crops", 0.0)
+
+class Factory(Producer):
+
+    def __init__(self):
+        super().__init__("Factory", 0.0)
+
 
 ## LAYER: Foundations
 class Foundation(GameObject):
@@ -105,7 +151,7 @@ class Foundation(GameObject):
 class Water(Storage):
 
     def __init__(self):
-        super().__init__("Water", WATER, math.inf, math.inf)
+        super().__init__("Water", RESOURCE_WATER, math.inf, math.inf)
 
 class Ground(GameObject):
 
@@ -115,14 +161,14 @@ class Ground(GameObject):
 class Trees(Storage):
 
     def __init__(self):
-        super().__init__("Trees", WOOD, 500.0, 500.0)
+        super().__init__("Trees", RESOURCE_WOOD, 500.0, 500.0)
 
 class Metals(Storage):
 
     def __init__(self):
-        super().__init__("Metals", METALS, 500.0, 500.0)
+        super().__init__("Metals", RESOURCE_METALS, 500.0, 500.0)
 
 class Rocks(Storage):
 
     def __init__(self):
-        super().__init__("Rocks", ROCKS, 500.0, 500.0)
+        super().__init__("Rocks", RESOURCE_ROCKS, 500.0, 500.0)
